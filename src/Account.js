@@ -17,10 +17,11 @@ import { MaterialIcons } from "@expo/vector-icons";
 import { Ionicons } from "@expo/vector-icons";
 import { MaterialCommunityIcons } from "@expo/vector-icons";
 import { Foundation } from "@expo/vector-icons";
+import { NavigationContainer } from "@react-navigation/native";
 const ht = Dimensions.get("window").height;
 const wd = Dimensions.get("window").width;
 
-function Account() {
+function Account({ navigation }) {
   return (
     <View>
       <StatusBar />
@@ -36,7 +37,7 @@ function Account() {
         }}
       >
         <View>
-          <TouchableWithoutFeedback onPress={() => alert("go back simon")}>
+          <TouchableWithoutFeedback onPress={() => navigation.push("Home")}>
             <View>
               <Entypo name="cross" size={32} color="grey" />
             </View>
@@ -73,7 +74,7 @@ function Account() {
             <Text>Shubham Sharma</Text>
             <TouchableOpacity
               style={{ marginLeft: wd * 0.03 }}
-              onPress={() => alert("pending")}
+              onPress={() => alert("go back simon")}
             >
               <AntDesign name="down" size={20} color="grey" />
             </TouchableOpacity>
