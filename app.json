@@ -25,6 +25,7 @@
     "description": "1.0.0",
     "android": {
       "package": "com.shubhampronteff.YouTube"
-    }
+    },
+    "githubUrl": "https://github.com/shubhampronteff/YouTube"
   }
 }
