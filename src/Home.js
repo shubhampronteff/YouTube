@@ -15,11 +15,12 @@ import { Ionicons } from "@expo/vector-icons";
 import { MaterialIcons } from "@expo/vector-icons";
 import { FontAwesome5 } from "@expo/vector-icons";
 import { Video } from "expo-av";
+import Options from "./Options";
 
 const wd = Dimensions.get("window").width;
 const ht = Dimensions.get("window").height;
 
-function Home() {
+function Home({ navigation }) {
   const [report1, setReport1] = useState(false);
   const [report2, setReport2] = useState(false);
   const [report3, setReport3] = useState(false);
@@ -98,16 +99,20 @@ function Home() {
                 <Text style={{ color: "white", textAlign: "center" }}>9+</Text>
               </View>
             </View>
-            <MaterialIcons name="search" size={30} color="grey" />
-            <Image
-              source={require("../assets/person.jpg")}
-              style={{
-                width: wd * 0.11,
-                height: ht * 0.05,
-                borderRadius: ht * 0.1,
-                marginLeft: wd * 0.03,
-              }}
-            />
+            <TouchableOpacity onPress={() => navigation.navigate("Search")}>
+              <MaterialIcons name="search" size={30} color="grey" />
+            </TouchableOpacity>
+            <TouchableOpacity onPress={() => navigation.navigate("Account")}>
+              <Image
+                source={require("../assets/me.jpeg")}
+                style={{
+                  width: wd * 0.11,
+                  height: ht * 0.05,
+                  borderRadius: ht * 0.1,
+                  marginLeft: wd * 0.03,
+                }}
+              />
+            </TouchableOpacity>
           </View>
         </View>
         <View
@@ -245,7 +250,7 @@ function Home() {
       </View>
       {/* Status bar ends */}
       {/* Content Starts */}
-      <ScrollView>
+      <ScrollView contentContainerStyle={{ flexGrow: 1 }}>
         <TouchableWithoutFeedback
           onPress={() => {
             setReport1(false);
@@ -256,19 +261,23 @@ function Home() {
           <View style={{ marginBottom: ht * 0.22 }}>
             {/* First Video Starts */}
             <View>
-              <Video
-                source={{
-                  uri:
-                    "http://d23dyxeqlo5psv.cloudfront.net/big_buck_bunny.mp4",
-                }}
-                rate={1.0}
-                volume={1.0}
-                isMuted={true}
-                resizeMode="cover"
-                shouldPlay
-                isLooping
-                style={{ width: wd * 1, height: ht * 0.3 }}
-              />
+              <TouchableWithoutFeedback
+                onPress={() => navigation.navigate("Content")}
+              >
+                <Video
+                  source={{
+                    uri:
+                      "http://d23dyxeqlo5psv.cloudfront.net/big_buck_bunny.mp4",
+                  }}
+                  rate={1.0}
+                  volume={1.0}
+                  isMuted={true}
+                  resizeMode="cover"
+                  shouldPlay={false}
+                  isLooping
+                  style={{ width: wd * 1, height: ht * 0.3 }}
+                />
+              </TouchableWithoutFeedback>
               <View
                 style={{
                   flexDirection: "row",
@@ -279,7 +288,10 @@ function Home() {
                 }}
               >
                 <View
-                  style={{ paddingLeft: wd * 0.01, paddingRight: wd * 0.01 }}
+                  style={{
+                    paddingLeft: wd * 0.01,
+                    paddingRight: wd * 0.01,
+                  }}
                 >
                   <Image
                     source={require("../assets/person.jpg")}
@@ -297,7 +309,13 @@ function Home() {
                 </View>
 
                 <View style={{ flex: 0.8 }}>
-                  <TouchableOpacity onPress={() => setReport1(true)}>
+                  <TouchableOpacity
+                    onPress={() => {
+                      setReport1(true);
+                      setReport2(false);
+                      setReport3(false);
+                    }}
+                  >
                     <Entypo
                       name="dots-three-vertical"
                       size={20}
@@ -306,23 +324,29 @@ function Home() {
                   </TouchableOpacity>
                 </View>
               </View>
+
+              {report1 ? <Options /> : null}
             </View>
             {/* First Video Ends */}
             {/* Second Video Starts */}
-            <View style={{ marginTop: ht * 0.01 }}>
-              <Video
-                source={{
-                  uri:
-                    "http://d23dyxeqlo5psv.cloudfront.net/big_buck_bunny.mp4",
-                }}
-                rate={1.0}
-                volume={1.0}
-                isMuted={true}
-                resizeMode="cover"
-                shouldPlay
-                isLooping
-                style={{ width: wd * 1, height: ht * 0.3 }}
-              />
+            <View>
+              <TouchableWithoutFeedback
+                onPress={() => navigation.navigate("Content")}
+              >
+                <Video
+                  source={{
+                    uri:
+                      "http://d23dyxeqlo5psv.cloudfront.net/big_buck_bunny.mp4",
+                  }}
+                  rate={1.0}
+                  volume={1.0}
+                  isMuted={true}
+                  resizeMode="cover"
+                  shouldPlay={false}
+                  isLooping
+                  style={{ width: wd * 1, height: ht * 0.3 }}
+                />
+              </TouchableWithoutFeedback>
               <View
                 style={{
                   flexDirection: "row",
@@ -333,10 +357,13 @@ function Home() {
                 }}
               >
                 <View
-                  style={{ paddingLeft: wd * 0.01, paddingRight: wd * 0.01 }}
+                  style={{
+                    paddingLeft: wd * 0.01,
+                    paddingRight: wd * 0.01,
+                  }}
                 >
                   <Image
-                    source={require("../assets/person.jpg")}
+                    source={require("../assets/pikacho.png")}
                     style={styles.channelIcon}
                   />
                 </View>
@@ -351,7 +378,13 @@ function Home() {
                 </View>
 
                 <View style={{ flex: 0.8 }}>
-                  <TouchableOpacity onPress={() => setReport2(true)}>
+                  <TouchableOpacity
+                    onPress={() => {
+                      setReport1(false);
+                      setReport2(true);
+                      setReport3(false);
+                    }}
+                  >
                     <Entypo
                       name="dots-three-vertical"
                       size={20}
@@ -360,23 +393,28 @@ function Home() {
                   </TouchableOpacity>
                 </View>
               </View>
+              {report2 ? <Options /> : null}
             </View>
             {/* Second Video Ends */}
             {/* Third Video Starts */}
-            <View style={{ marginTop: ht * 0.01 }}>
-              <Video
-                source={{
-                  uri:
-                    "http://d23dyxeqlo5psv.cloudfront.net/big_buck_bunny.mp4",
-                }}
-                rate={1.0}
-                volume={1.0}
-                isMuted={true}
-                resizeMode="cover"
-                shouldPlay
-                isLooping
-                style={{ width: wd * 1, height: ht * 0.3 }}
-              />
+            <View>
+              <TouchableWithoutFeedback
+                onPress={() => navigation.navigate("Content")}
+              >
+                <Video
+                  source={{
+                    uri:
+                      "http://d23dyxeqlo5psv.cloudfront.net/big_buck_bunny.mp4",
+                  }}
+                  rate={1.0}
+                  volume={1.0}
+                  isMuted={true}
+                  resizeMode="cover"
+                  shouldPlay={false}
+                  isLooping
+                  style={{ width: wd * 1, height: ht * 0.3 }}
+                />
+              </TouchableWithoutFeedback>
               <View
                 style={{
                   flexDirection: "row",
@@ -387,10 +425,13 @@ function Home() {
                 }}
               >
                 <View
-                  style={{ paddingLeft: wd * 0.01, paddingRight: wd * 0.01 }}
+                  style={{
+                    paddingLeft: wd * 0.01,
+                    paddingRight: wd * 0.01,
+                  }}
                 >
                   <Image
-                    source={require("../assets/person.jpg")}
+                    source={require("../assets/me.jpeg")}
                     style={styles.channelIcon}
                   />
                 </View>
@@ -405,7 +446,13 @@ function Home() {
                 </View>
 
                 <View style={{ flex: 0.8 }}>
-                  <TouchableOpacity onPress={() => setReport3(true)}>
+                  <TouchableOpacity
+                    onPress={() => {
+                      setReport1(false);
+                      setReport2(false);
+                      setReport3(true);
+                    }}
+                  >
                     <Entypo
                       name="dots-three-vertical"
                       size={20}
@@ -414,33 +461,9 @@ function Home() {
                   </TouchableOpacity>
                 </View>
               </View>
+              {report3 ? <Options /> : null}
             </View>
             {/* Third Video Ends */}
-            {report1 || report2 || report3 ? (
-              <View style={styles.dots}>
-                <View style={{ flex: 1 }}>
-                  <Text style={styles.dottext}>Save to Watch later</Text>
-                </View>
-                <View style={{ flex: 1 }}>
-                  <Text style={styles.dottext}>Save to Playlist</Text>
-                </View>
-                <View style={{ flex: 1 }}>
-                  <Text style={styles.dottext}>Download</Text>
-                </View>
-                <View style={{ flex: 1 }}>
-                  <Text style={styles.dottext}>Share</Text>
-                </View>
-                <View style={{ flex: 1 }}>
-                  <Text style={styles.dottext}>Not interested</Text>
-                </View>
-                <View style={{ flex: 1 }}>
-                  <Text style={styles.dottext}>Don't recommend channel</Text>
-                </View>
-                <View style={{ flex: 1 }}>
-                  <Text style={styles.dottext}>Report</Text>
-                </View>
-              </View>
-            ) : null}
           </View>
         </TouchableWithoutFeedback>
       </ScrollView>
@@ -510,20 +533,5 @@ const styles = StyleSheet.create({
   channelinfo: {
     color: "grey",
     paddingRight: wd * 0.03,
-  },
-  dots: {
-    width: wd * 0.53,
-    height: ht * 0.35,
-    backgroundColor: "white",
-    position: "absolute",
-    top: ht * 0.32,
-    left: wd * 0.45,
-    borderRadius: ht * 0.004,
-    paddingLeft: wd * 0.02,
-    elevation: 5,
-    paddingTop: ht * 0.02,
-  },
-  dottext: {
-    fontSize: ht * 0.02,
   },
 });
