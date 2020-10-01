@@ -17,7 +17,8 @@ import { MaterialIcons } from "@expo/vector-icons";
 import { Ionicons } from "@expo/vector-icons";
 import { MaterialCommunityIcons } from "@expo/vector-icons";
 import { Foundation } from "@expo/vector-icons";
-import { NavigationContainer } from "@react-navigation/native";
+import { SimpleLineIcons } from "@expo/vector-icons";
+
 const ht = Dimensions.get("window").height;
 const wd = Dimensions.get("window").width;
 
@@ -98,36 +99,62 @@ function Account({ navigation }) {
         }}
       >
         <View style={{ flexDirection: "row" }}>
-          <MaterialIcons name="person-pin" size={24} color="black" />
-          <Text>Your Channel</Text>
+          <View style={{ flex: 2, alignItems: "center" }}>
+            <MaterialIcons name="person-pin" size={24} color="grey" />
+          </View>
+          <View style={{ flex: 10 }}>
+            <Text>Your Channel</Text>
+          </View>
         </View>
         <View style={{ flexDirection: "row" }}>
-          <Ionicons name="md-settings" size={24} color="black" />
-          <Text> YouTube Studio</Text>
+          <View style={{ flex: 2, alignItems: "center" }}>
+            <Ionicons name="md-settings" size={24} color="grey" />
+          </View>
+          <View style={{ flex: 8 }}>
+            <Text> YouTube Studio</Text>
+          </View>
+          <View style={{ flex: 2 }}>
+            <SimpleLineIcons name="share-alt" size={20} color="grey" />
+          </View>
         </View>
         <View style={{ flexDirection: "row" }}>
-          <MaterialCommunityIcons
-            name="google-analytics"
-            size={24}
-            color="black"
-          />
-          <Text>Time Watched</Text>
+          <View style={{ flex: 2, alignItems: "center" }}>
+            <MaterialCommunityIcons
+              name="google-analytics"
+              size={24}
+              color="grey"
+            />
+          </View>
+          <View style={{ flex: 10 }}>
+            <Text>Time Watched</Text>
+          </View>
         </View>
         <View style={{ flexDirection: "row" }}>
-          <Entypo name="youtube" size={24} color="black" />
-          <Text>Get YouTube Premimum</Text>
+          <View style={{ flex: 2, alignItems: "center" }}>
+            <Entypo name="youtube" size={24} color="grey" />
+          </View>
+          <View style={{ flex: 10 }}>
+            <Text>Get YouTube Premimum</Text>
+          </View>
         </View>
         <View style={{ flexDirection: "row" }}>
           <Foundation name="dollar" size={24} color="black" />
           <Text>Paid memberships</Text>
         </View>
         <View style={{ flexDirection: "row" }}>
+          <MaterialIcons name="library-add" size={24} color="black" />
           <Text>Switch account</Text>
         </View>
         <View style={{ flexDirection: "row" }}>
+          <MaterialCommunityIcons name="incognito" size={24} color="black" />
           <Text>Turn on Incognito</Text>
         </View>
         <View style={{ flexDirection: "row" }}>
+          <MaterialCommunityIcons
+            name="shield-account"
+            size={24}
+            color="black"
+          />
           <Text>Your data in YouTube</Text>
         </View>
       </View>
@@ -140,9 +167,11 @@ function Account({ navigation }) {
         }}
       >
         <View style={{ flexDirection: "row" }}>
+          <Ionicons name="ios-settings" size={24} color="black" />
           <Text>Settings</Text>
         </View>
         <View style={{ flexDirection: "row" }}>
+          <Entypo name="help-with-circle" size={24} color="black" />
           <Text>Help & feedback</Text>
         </View>
         <View style={{ alignItems: "center" }}>
